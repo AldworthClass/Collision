@@ -13,6 +13,7 @@ pygame.display.set_caption("My Game")
 
 #This is what the user will try to click
 target = pygame.Rect(325, 225, 50, 50)
+target_color = BLUE
 
 # Loop until the user clicks the close button.
 done = False
@@ -26,15 +27,18 @@ while not done:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         done = True
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                        if target.collidepoint(mouse_pos):
+                                target_color = RED
+                        else:
+                                target_color = BLUE
 
+                        
         # --- Game logic should go here
         mouse_pos = pygame.mouse.get_pos()
 
         #Determines the color of the target
-        if target.collidepoint(mouse_pos):
-                target_color = RED
-        else:
-                target_color = BLUE
+
 
 
         # --- Screen-clearing code goes here
