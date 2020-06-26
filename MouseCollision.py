@@ -9,7 +9,7 @@ pygame.init()
 # Set the width and height of the screen [width, height]
 size = (700, 500)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("My Game")
+pygame.display.set_caption("Collision with the cursor")
 
 #This is what the user will try to click
 target = pygame.Rect(325, 225, 50, 50)

@@ -9,11 +9,17 @@ pygame.init()
 # Set the width and height of the screen [width, height]
 size = (700, 500)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("My Game")
+pygame.display.set_caption("Collision with the Cursor Extensions")
 
-#This is what the user will try to click
-target = pygame.Rect(325, 225, 50, 50)
-target_color = BLUE
+#Lists to store the colors and locations of each Rect
+targets = []
+target_colors = []
+
+#Creates a 10 x 6 grid of blue rectangles
+for i in range(100, 600, 50):   #10 across, i will be x-cord
+        for j in range(100, 400, 50):   #6 down, j will be y-cord
+                targets.append(pygame.Rect(i, j, 25, 25))
+                target_colors.append(BLUE)
 
 # Loop until the user clicks the close button.
 done = False
@@ -28,17 +34,15 @@ while not done:
                 if event.type == pygame.QUIT:
                         done = True
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                        if target.collidepoint(mouse_pos):
-                                target_color = RED
-                        else:
-                                target_color = BLUE
+                        for i in range(len(targets)):
+                                mouse_pos = pygame.mouse.get_pos()
+                                if targets[i].collidepoint(mouse_pos):
+                                        target_colors[i] = RED
+                                else:
+                                        target_colors[i] = BLUE
 
                         
         # --- Game logic should go here
-        mouse_pos = pygame.mouse.get_pos()
-
-        #Determines the color of the target
-
 
 
         # --- Screen-clearing code goes here
@@ -47,8 +51,10 @@ while not done:
 
         # --- Drawing code should go here
 
-        #Draws target
-        pygame.draw.rect(screen, target_color, target)
+        #Draws targets
+        for i in range(len(targets)):
+                pygame.draw.rect(screen, target_colors[i], targets[i])
+
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
