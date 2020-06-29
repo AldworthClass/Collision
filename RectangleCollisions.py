@@ -11,10 +11,11 @@ pygame.init()
 size = (700, 500)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Colliding Rectangles")
+pygame.mouse.set_visible(False)
 
 #Stationary target to collide with
 target = pygame.Rect(325, 225, 50, 50)
-target_color = GREEN
+target_color = RED
 
 #Player character that will follow the mouse
 player = pygame.Rect(0, 0, 25, 25)
@@ -32,12 +33,15 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-        if event.type == pygame.MOUSEMOTION:
+        elif event.type == pygame.MOUSEMOTION:
             mouse_pos = pygame.mouse.get_pos()
             player.x = mouse_pos[0]
             player.y = mouse_pos[1]
 
     # --- Game logic should go here
+    if target.colliderect(player):
+        target_color = BLUE
+
 
     # --- Screen-clearing code goes here
     #  Here, we clear the screen to white.

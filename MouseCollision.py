@@ -36,7 +36,6 @@ while not done:
         else:
                 target_color = BLUE
 
-
         # --- Screen-clearing code goes here
          #  Here, we clear the screen to white. 
         screen.fill(WHITE)

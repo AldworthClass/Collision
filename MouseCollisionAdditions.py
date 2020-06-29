@@ -34,8 +34,8 @@ while not done:
                 if event.type == pygame.QUIT:
                         done = True
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                        for i in range(len(targets)):
-                                mouse_pos = pygame.mouse.get_pos()
+                        mouse_pos = pygame.mouse.get_pos()
+                        for i in range(len(targets)):   #iterates through targets
                                 if targets[i].collidepoint(mouse_pos):
                                         target_colors[i] = RED
                                 else:
