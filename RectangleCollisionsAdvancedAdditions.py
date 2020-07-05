@@ -44,11 +44,14 @@ while not done:
             player.y = mouse_pos[1]
 
     # --- Game logic should go here
+
+    # List to add intersection of rectangles
     intersections = []
     for i in range(len(targets)):
         if targets[i].contains(player):
             target_colors[i] = GREEN
         elif targets[i].colliderect(player):
+            # When an intersection is detected, clip[() gives u a rectangle representing the intersection
             intersections.append(targets[i].clip(player))
             target_colors[i] = BLUE
         else:
@@ -68,6 +71,7 @@ while not done:
     pygame.draw.rect(screen, player_color, player)
 
     # Draws overlaps in green
+    # This needs to be done last so it is in top
     for i in range(len(intersections)):
         pygame.draw.rect(screen, GREEN, intersections[i])
 
